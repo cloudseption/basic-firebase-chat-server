@@ -24,21 +24,26 @@ async function onConnect(socket) {
 
 
     socket.on('onSelectConversation', (data) => {
-        log.trace(`onSelectConversation() - ${data.userId}`);
-        let selfId      = socket.badgeBookUserDetails.userId;
-        let partnerId   = data.userId;
-        let convoId     = concactIds(selfId, partnerId);
+        try {
+            log.trace(`onSelectConversation() - ${data.userId}`);
+            let selfId      = socket.badgeBookUserDetails.userId;
+            let partnerId   = data.userId;
+            let convoId     = concactIds(selfId, partnerId);
 
-        messageRef = firebase.database().ref().child(convoId);
-
-        messageRef.limitToLast(10).on('value', messages => {
-            try {
-                socket.emit('updateMessageList', Object.values(messages.val()));
-            } catch (err) {
-                log.trace(`Error converting values`);
-                socket.emit('updateMessageList', []);
-            }
-        });
+            messageRef = firebase.database().ref().child(convoId);
+    
+            messageRef.limitToLast(10).on('value', messages => {
+                try {
+                    socket.emit('updateMessageList', Object.values(messages.val()));
+                } catch (err) {
+                    log.trace(`Error converting values`);
+                    socket.emit('updateMessageList', []);
+                }
+            });
+        } catch (err) {
+            log.error(err);
+            socket.close();
+        }
     });
 
 
