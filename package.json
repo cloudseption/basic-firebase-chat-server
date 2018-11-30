@@ -1,0 +1,30 @@
+{
+  "name": "firebase-chat-server",
+  "version": "1.0.0",
+  "description": "basic firebase chat",
+  "main": "src/index.js",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "firebase": "^5.5.9",
+    "log4js": "^3.0.6",
+    "node-jose": "^1.1.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "wget https://s3-us-west-2.amazonaws.com/cloudception-bucket/public/chat-app-build.zip && unzip ./chat-app-build.zip && rm ./chat-app-build.zip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudseption/basic-firebase-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cloudseption/basic-firebase-chat/issues"
+  },
+  "homepage": "https://github.com/cloudseption/basic-firebase-chat#readme"
+}
