@@ -29,7 +29,7 @@ const ioServer      = socketIo(httpServer);
 // API Endpoints
 app.use('/api', api);
 app.use('/', express.static(path.resolve(`${__dirname}/../../basic-firebase-chat/react-chat/build`)));
-app.use('/', express.static(path.resolve(`${__dirname}/build`)));
+app.use('/', express.static(path.resolve(`${__dirname}/../build`)));
 
 // Socket Setup
 ioServer.on('connection', socketConn);
